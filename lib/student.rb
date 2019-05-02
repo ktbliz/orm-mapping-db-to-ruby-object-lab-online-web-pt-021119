@@ -14,7 +14,9 @@ class Student
       SELECT * from students
     SQL
     
-    DB[:conn].execute(sql)
+    DB[:conn].execute(sql).map do |row|
+      self.new(row)
+    end 
     
   end
 
