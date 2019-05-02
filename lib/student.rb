@@ -11,7 +11,7 @@ class Student
 
   def self.all
     sql = <<-SQL
-      SELECT * from students
+      SELECT * FROM students
     SQL
     
     DB[:conn].execute(sql).map do |row|
@@ -21,8 +21,12 @@ class Student
   end
 
   def self.find_by_name(name)
-    # find the student in the database given a name
-    # return a new instance of the Student class
+    sql = <<-SQL
+      SELECT * FROM students WHERE name = ?
+    SQL
+    
+    DB[:conn].execute(sql)
+    
   end
   
   def save
